@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary-color: black;
+  --secondary-color: #496ceb;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  padding: 0 2.5vh;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  font-size: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* navbar section start */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.502);
+}
+
+#left-nav {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#left-nav a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+#right-nav {
+  position: relative;
+  width: 50vh;
+  display: flex;
+  align-items: center;
+  gap: 4vh;
+}
+
+#right-nav a {
+  padding: 8px 20px;
+  border: 1px solid #0000003c;
+  border-radius: 50px;
+  font-weight: 500;
+  color: #000000bb;
+  transition: all ease 0.4s;
+  position: relative;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+#right-nav a:hover {
+  color: white; 
+}
+
+#right-nav a::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  left: 0;
+  bottom: -100%;
+  border-radius: 50%;
+  transition: all ease 0.4s;
+}
+
+#right-nav a:hover::after {
+  bottom: 0;
+  border-radius: 0;
+  color: white;
+}
+
+
+
+
+/* navbar section end */
+
+/* reset Password page css start */
+
+#forgot-password {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.resetPass-container {
+  background-color: #fff;
+  width: 350px;
+  height: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.resetPass-container h2 {
+  background-color: #fff;
+  text-align: center;
+  padding-bottom: 10px;
+  font-weight: bolder;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+label {
+  background-color: #fff;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input {
+  background-color: #fff;
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/* reset Password page css end */
+
+/* footer section start */
+
+.f-info {
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.f-info-socials {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.f-info-socials a {
+  text-decoration: none;
+  color: #000;
+}
+.ri-instagram-fill {
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+.ri-instagram-fill:hover {
+  color: #c71343;
+}
+.ri-linkedin-box-fill {
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+.ri-linkedin-box-fill:hover {
+  color: #0077b5;
+}
+.ri-youtube-fill {
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+.ri-youtube-fill:hover {
+  color: #cd201f;
+}
+.f-info-links {
+  color: black;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+  transition: all ease 0.2s;
+}
+
+.f-info-links a:hover {
+  color: var(--secondary-color);
+  font-weight: 800;
+}
+.f-copyright {
+  font-weight: 600;
+}
+
+/* footer Section End */
