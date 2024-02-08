@@ -11,8 +11,8 @@ import {
 } from "../controllers/user.controllers.js";
 import {
   authenticate,
-  isTeacher,
-  isStudent,
+  isAdmin,
+  isUser,
 } from "../middlewares/auth.middlewares.js";
 
 const userRoutes = express.Router();
@@ -27,7 +27,7 @@ userRoutes.route("/forgotPassword").post(forgotPasswordController);
 userRoutes.route("/forgotPassword/:resetToken").put(resetPasswordController);
 userRoutes.route("/forgotPassword/:resetToken").get(forgotPasswordTokenLink);
 
-userRoutes.get("/student", authenticate ,isStudent, (req, res)=>{
+userRoutes.get("/student", authenticate ,isUser, (req, res)=>{
   res.send("This is Protected Routes for studend")
 })
 export default userRoutes;
