@@ -112,7 +112,7 @@ export const isAdmin = async (req, res, next) => {
     });
   }
 };
-export const isStudent = async (req, res, next) => {
+export const isUser = async (req, res, next) => {
   try {
     if (req.user.accountType !== "User") {
       return res.status(403).json({
