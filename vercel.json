@@ -2,18 +2,18 @@
     "version": 2,
     "functions": {
       "api": {
-        "src": "/src/index.js",
-        "runtime": "@now/node"
+        "handler": "src/index.js",
+        "runtime": "@vercel/node"
       }
     },
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "/src/index.js"
+        "src": "/api/v1/(.*)",
+        "dest": "src/index.js"
       },
       {
         "src": "/(.*)",
-        "dest": "/src/index.js"
+        "dest": "src/index.js"
       }
     ]
   }
