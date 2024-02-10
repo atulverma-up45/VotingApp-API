@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   },
   tls: {
     rejectUnauthorized: true,
-  },
+  }
 });
 
 const sendMail = async (email, subject, html) => {
