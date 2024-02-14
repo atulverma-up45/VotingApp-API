@@ -18,15 +18,15 @@ import {
 
 const userRoutes = express.Router();
 
-userRoutes.post("/sendOTP", sendOTPController);
+userRoutes.post("/send-OTP", sendOTPController);
 userRoutes.post("/signUp", signupController);
 userRoutes.post("/logIn", loginController);
-userRoutes.post("/changePassword", authenticate, changePasswordController);
-userRoutes.post("/logoutUser", authenticate, logoutUserContoller);
+userRoutes.post("/change-Password", authenticate, changePasswordController);
+userRoutes.post("/logout-User", authenticate, logoutUserContoller);
 
-userRoutes.route("/forgotPassword").post(forgotPasswordController);
-userRoutes.route("/forgotPassword/:resetToken").put(resetPasswordController);
-userRoutes.route("/forgotPassword/:resetToken").get(forgotPasswordTokenLink);
+userRoutes.route("/forgot-Password").post(forgotPasswordController);
+userRoutes.route("/forgot-Password/:resetToken").put(resetPasswordController);
+userRoutes.route("/forgot-Password/:resetToken").get(forgotPasswordTokenLink);
 
 userRoutes.route("/user").get(authenticate, userDetailsController);
 
