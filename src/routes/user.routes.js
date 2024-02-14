@@ -8,6 +8,7 @@ import {
   forgotPasswordController,
   resetPasswordController,
   forgotPasswordTokenLink,
+  userDetailsController,
 } from "../controllers/user.controllers.js";
 import {
   authenticate,
@@ -27,7 +28,9 @@ userRoutes.route("/forgotPassword").post(forgotPasswordController);
 userRoutes.route("/forgotPassword/:resetToken").put(resetPasswordController);
 userRoutes.route("/forgotPassword/:resetToken").get(forgotPasswordTokenLink);
 
-userRoutes.get("/student", authenticate ,isUser, (req, res)=>{
-  res.send("This is Protected Routes for studend")
-})
+userRoutes.route("/user").get(authenticate, userDetailsController);
+
+userRoutes.get("/student", authenticate, isUser, (req, res) => {
+  res.send("This is Protected Routes for studend");
+});
 export default userRoutes;
