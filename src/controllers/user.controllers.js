@@ -7,6 +7,7 @@ import otpMailTemplate from "../mail/templates/verifyOTP.mailTemplates.js";
 import forgotPasswordTemplate from "../mail/templates/forgotPasswordToken.mailTemplates.js";
 import changePasswordTemplate from "../mail/templates/changePassword.mailTemplates.js";
 import resetPasswordTemplate from "../mail/templates/resetPassword.mailTemplates.js";
+import signUpUserTemplate from "../mail/templates/signUpUser.templates.js";
 import crypto from "crypto";
 
 // email validation function
@@ -160,7 +161,7 @@ export const signupController = async (req, res) => {
       });
     }
 
-    if (!dbOtp || otp !== dbOtp.otp) {
+    if (otp !== dbOtp.otp) {
       return res.status(400).json({
         success: false,
         message: "Please enter a valid OTP.",
@@ -202,6 +203,11 @@ export const signupController = async (req, res) => {
       avatar: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     });
 
+    sendMail(
+      email,
+      "Welcome to VotingApp - Successful Registration",
+      signUpUserTemplate(firstName, email, confirmPassword)
+    );
     return res.status(201).json({
       success: true,
       message: "The user was successfully registered.",
@@ -272,12 +278,12 @@ export const loginController = async (req, res) => {
     const options = {
       httpOnly: true,
       sameSite: "Strict",
-      secure: true
+      secure: true,
     };
 
     // include the access token And Refresh token in the response headers
-    res.setHeader('X-accessToken', accessToken);
-    res.setHeader('X-refreshToken', refreshToken);
+    res.setHeader("X-accessToken", accessToken);
+    res.setHeader("X-refreshToken", refreshToken);
 
     // Send the response with cookies and user information
     return res
@@ -362,7 +368,6 @@ export const changePasswordController = async (req, res) => {
   }
 };
 
-
 // ForgotPassword controller
 export const forgotPasswordController = async (req, res) => {
   try {
@@ -422,7 +427,6 @@ export const forgotPasswordController = async (req, res) => {
       forgotPasswordTemplate(existingUser.firstName, existingUser.email, link)
     );
 
-   
     return res.status(200).json({
       success: true,
       message: `Password reset email sent successfully on your Email: ${email}.`,
@@ -439,9 +443,9 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
-export const forgotPasswordTokenLink = async (req, res)=>{
+export const forgotPasswordTokenLink = async (req, res) => {
   res.render("./frontent/resetPassword.ejs");
-}
+};
 
 // Reset Password Controller
 export const resetPasswordController = async (req, res) => {
@@ -523,7 +527,7 @@ export const resetPasswordController = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Password Reset Successfully",
-      user: user, 
+      user: user,
     });
   } catch (error) {
     console.error("Error Occur while Reseting the Password", error.message);
@@ -578,6 +582,49 @@ export const logoutUserContoller = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
+    });
+  }
+};
+
+// get user details controller
+export const userDetailsController = async (req, res) => {
+  try {
+    // fetch the user id
+    const userId = req.user._id;
+
+    // validate the user id
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "User Id is Required",
+      });
+    }
+
+    // find the user details form database
+    const userDetails = await User.findById(userId).select("-password -refreshToken -accountType");
+
+    // validate the user details
+    if (!userDetails) {
+      return res.status(400).json({
+        success: false,
+        message: "Please Enter a Valid User ID",
+      });
+    }
+
+    //return the user details
+    return res.status(200).json({
+      success: true,
+      message: "User Profile Details Fetched Successfully",
+      user: userDetails,
+    });
+  } catch (error) {
+    console.log("Error Occured While Fetching the Profile Details", error);
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Internal Server Error The User Profile Cannot Fetched Please Try again Later",
+      error: error.message,
     });
   }
 };
