@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./config/database.js";
 import userRoutes from "./routes/user.routes.js";
+import pollRoutes from "./routes/poll.routes.js";
 import cookieParser from "cookie-parser";
 import ejsMate from "ejs-mate";
 import { fileURLToPath } from "url";
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 
 // Mounting the userRoutes on the root (/) path
 app.use("/api/v1/", userRoutes);
+app.use("/api/v1/", pollRoutes);
 
 // server listen on port
 app.listen(PORT, () => {
