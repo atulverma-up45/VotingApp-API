@@ -250,3 +250,61 @@ export const deletePollController = async (req, res) => {
     });
   }
 };
+
+export const getPollResultController = async (req, res) => {
+  try {
+    // get pollId from req.params.pollId
+    const pollId = req.params.pollId;
+
+    // validate the pollID
+    if (!pollId) {
+      return res.status(400).json({
+        success: false,
+        message: "Poll ID is required for fetching the poll result.",
+      });
+    }
+
+    //Retrieve poll information from the database using the provided pollId.
+    const pollInfo = await Poll.findById(pollId);
+
+    // Check if the poll with the given pollId exists.
+    if (!pollInfo) {
+      return res.status(404).json({
+        success: false,
+        message: "Poll not found with the given ID. Please enter a valid poll ID.",
+      });
+    }
+
+    // Retrieve all votes associated with the poll from the database
+    const votes = await Vote.find({ poll: pollId });
+
+    // Initialize a Empty Object to store the total votes for each option.
+    const totalVotes = {};
+
+    // Loop through each vote in the retrieved votes
+    for (const vote of votes) {
+      const selectedOption = vote.selectedOption;
+      totalVotes[selectedOption] = (totalVotes[selectedOption] || 0) + 1;
+    }
+
+    const pollResults = {
+      pollId: req.params.pollId,
+      title: pollInfo.title,
+      options: pollInfo.options,
+      totalVotes: totalVotes,
+    };
+
+    //return response
+    return res.status(200).json({
+      success: true,
+      message: "Poll Result Fetched Successfully",
+      pollResults,
+    });
+  } catch (error) {
+    console.log("Error Occurred While Fetching the Poll Result :", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};

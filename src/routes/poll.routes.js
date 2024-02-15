@@ -4,6 +4,7 @@ import {
   giveVoteController,
   getPollDetailsController,
   getPollsController,
+  getPollResultController,
 } from "../controllers/poll.controllers.js";
 import {
   authenticate,
@@ -19,10 +20,13 @@ pollRoutes
 
 pollRoutes.route("/vote-now").post(authenticate, isUser, giveVoteController);
 
-pollRoutes.route("/get-polls").get(authenticate, getPollsController);
+pollRoutes.route("/polls").get(authenticate, getPollsController);
 
 pollRoutes
-  .route("/get-pollDetails/:pollId")
+  .route("/poll-Details/:pollId")
   .get(authenticate, getPollDetailsController);
-  
+
+pollRoutes
+  .route("/poll-rusult/:pollId")
+  .get(authenticate, getPollResultController);
 export default pollRoutes;
