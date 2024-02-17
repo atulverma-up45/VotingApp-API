@@ -17,7 +17,7 @@ VotingApp API uses all standard practices like JWT, bcrypt, access tokens, refre
 ## Getting Started
 
 Explore the power of our API firsthand! Click on the link,
-[VotingApp-API](https://www.linkedin.com/in/atulverma-up45/](https://votingapp-u3jq.onrender.com/))
+[VotingApp-API](https://votingapp-u3jq.onrender.com/)
 
 Or You can follow these instructions to get the API and running on your local machine.
 
