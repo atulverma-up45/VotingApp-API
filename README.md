@@ -83,7 +83,7 @@ REFRESH_TOKEN_EXPIRY= 2y
 5. Start the API:
 
 ```
-npm run dev
+npm start
 ```
 
 6. Access the App:
