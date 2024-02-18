@@ -17,78 +17,8 @@ VotingApp API uses all standard practices like JWT, bcrypt, access tokens, refre
 ## Getting Started
 
 Explore the power of our API firsthand! Click on the link,
-[VotingApp-API](https://votingapp-u3jq.onrender.com/)
+[VotingApp-API](https://votingapp-u3jq.onrender.com/)  
 
-Or You can follow these instructions to get the API and running on your local machine.
-
-## Prerequisites
-
-- **Node.js and npm :**
-  Install Node.js and npm from nodejs.org.
-
-- **MongoDB :**
-  Install MongoDB and make sure it's running on your machine. You can download MongoDB from mongodb.com.
-
-- **Text Editor or IDE :**
-  Choose a text editor or integrated development environment (IDE) for coding, such as Visual Studio Code, Atom, or Sublime Text.
-
-# VotingApp API
-
-## Installation
-
-1. Clone the repository:
-
-   ```
-   git clone https://github.com/atulverma-up45/VotingApp-API.git
-   ```
-
-2. Change into the project directory:
-
-   ```
-   cd VotingApp-API
-   ```
-
-
-3. Install the dependencies:
-
-   ```
-   npm i
-   ```
-
-4. Environment Variables:
-
-Create a .env file for storing environment variables.
-**Example** .env file :
-
-```
-# database config
-PORT = 3000
-MONGODB_URI = 'mongodb://127.0.0.1:27017/VotingApp'
-
-
-
-# EMAIL Config
-HOST_MAIL = 'smtp.gmail.com'
-EMAIL_PORT = 587
-MAIL_USERNAME = "Your Email"
-MAIL_PASSWORD = "Add you password"
-
-# jwt config
-ACCESS_TOKEN_SECRET= "You Are Eligible Now"
-ACCESS_TOKEN_EXPIRY= 2d
-REFRESH_TOKEN_SECRET= "Atul Verma has given you permission"
-REFRESH_TOKEN_EXPIRY= 2y
-```
-
-5. Start the API:
-
-```
-npm start
-```
-
-6. Access the App:
-
-Access VotingApp API in Your web browser at http://localhost:3000 .
 
 ## Contact
 
